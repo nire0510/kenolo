@@ -1,0 +1,42 @@
+{
+  "FOR_APPROVAL": {
+    "exclude": { "name": "ALREADY_PAID", "property": "order.paid", "operator": "eq", "value": true },
+    "include": {
+      "and": [
+        { "name": "STATUS_PENDING", "property": "order.status", "operator": "eq", "value": 2 },
+        {
+          "or": [
+            {
+              "and": [
+                { "name": "POS_SP", "property": "order.pos.countryName", "operator": "eq", "value": "Spain" },
+                {
+                  "or": [
+                    { "name": "NOT_ITALY_USER", "property": "order.user.countryName", "operator": "neq", "value": "Italy" },
+                    { "name": "NOT_ITALY_HOTEL", "property": "order.hotel.countryName", "operator": "neq", "value": "Italy" }
+                  ]
+                }
+              ]
+            },
+            { "name": "POS_IT_OR_UK", "property": "order.pos.countryName", "operator": "in", "value": ["Italy", "United Kingdom"] },
+            {
+              "and": [
+                { "name": "FRAUD_SCORE", "property": "order.score", "operator": "gte", "value": 0.8 },
+                { "name": "NUMBER_OF_ITEMS", "property": "order.items", "operator": "eq", "value": 3 }
+              ]
+            },
+            { "name": "MAX_TOTAL_PRICE", "property": "order.price", "operator": "gte", "value": 2500 },
+            { "name": "PAYMENT_ELEVATED_RISK", "property": "order.payment.level", "operator": "eq", "value": "elevated" },
+            { "name": "HIGH_RISK_EMAIL_DOMAINS", "property": "order.user.email", "operator": "ew", "value": ["hacker.com"] },
+            { "name": "HIGH_RISK_USER_EMAILS", "property": "order.user.email", "operator": "in", "value": ["danger@hotmail.com"] },
+            {
+              "and": [
+                { "name": "NO_CAMPAIGN", "property": "order.campaign", "operator": "eq", "value": null },
+                { "name": "NO_CLIENT_ID", "property": "clientId", "operator": "eq", "value": null }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
