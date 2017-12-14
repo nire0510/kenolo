@@ -38,7 +38,7 @@ const rule = {
 };
 
 kenolo(rule, data);
-// -> { decision: true, conditions: [ 'STATUS_PENDING', 'HIGH_RISK_EMAIL_DOMAINS' ] }
+// -> { decision: true, conditions: [ 'STATUS_PENDING', 'HIGH_RISK_USER_EMAILS' ] }
 ```
 
 See tests directory for more examples
@@ -54,5 +54,5 @@ See tests directory for more examples
 - `lt` - Lower than (a single value)
 - `lte` - Lower than or equal to (a single value)
 - `gt` - Greater than (a single value)
-- `sw` - Stars with (an array of values)
+- `sw` - Starts with (an array of values)
 - `ew` - Ends with (an array of values)
