@@ -1,58 +1,43 @@
-const evaluate = require('./evaluate');
-
-/**
- * Parses and evaluates condition recursively
- * @param {Object} condition Condition object to check
- * @param {Object} data Input data object to use in conditions
- */
-function decide(condition, data, results) {
-  if (condition.hasOwnProperty('and')) {
-    return condition.and.every(c => decide(c, data, results));
-  }
-  else if (condition.hasOwnProperty('or')) {
-    return condition.or.some(c => decide(c, data, results));
-  }
-  else if (evaluate(condition, data) === true) {
-    return results.push(condition.name) > 0;
-  }
-
-  return false;
-}
+const evaluate = require('./lib/evaluate');
+const validate = require('./lib/validate');
 
 /**
  * @typedef {Object} Decision
- * @property {Boolean} decision Indicates whether a rule applies to input data object
+ * @property {Boolean} apply Indicates whether a rule applies to input data object
  * @property {String[]} conditions Array of truthy condition names
  */
 
 /**
- * Checks a rule 
- * @param {Object} rule Object which contains set of conditions
- * @param {Object} data Object to check against the rule
+ * Evaluates set of conditions to see if a rule should apply
+ * @param {Object} rule Object which contains a set of conditions
+ * @param {Object} data Data object to check against the rule
  * @returns {Decision} Rule check results
  */
-module.exports = function (rule, data) {
+module.exports = (rule, data) => {
   const conditions = [];
 
-  // check exclusions:
-  if (rule.exclude && decide(rule.exclude, data, conditions)) {
+  // validate rule object:
+  validate.rule(rule);
+
+  // check exclusions section:
+  if (rule.exclude && Boolean(evaluate.section(rule.exclude, data, conditions)) === true) {
     return {
-      decision: false,
-      conditions
-    }
+      apply: false,
+      conditions,
+    };
   }
 
-  // check inclusions:
-  if (rule.include && decide(rule.include, data, conditions)) {
+  // check inclusions section:
+  if (rule.include && Boolean(evaluate.section(rule.include, data, conditions))) {
     return {
-      decision: true,
-      conditions
-    }
+      apply: true,
+      conditions,
+    };
   }
 
   // reject:
   return {
-    decision: false,
-    conditions
-  }
+    apply: false,
+    conditions,
+  };
 };
