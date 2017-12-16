@@ -8,7 +8,7 @@
 - You want non-programmers to be able to understand and modify the rules themselves  
 _KENOLO ruleset is simple yet powerful thanks to the operators which are supported_
 - You need to apply different rules and conditions per environment  
-_Use npm configuration packages, such as [config](https://www.npmjs.com/package/config) or [nconf](https://www.npmjs.com/package/nconf), to store your rulesets per environment_.
+_Use npm configuration packages, such as [config](https://www.npmjs.com/package/config) or [nconf](https://www.npmjs.com/package/nconf), to store your ruleset per environment_.
 - You strive to keep source code modifications and consequently tedious QA cycles to the minimum  
 _Simply modify an external JSON file to update your ruleset_.
 - Security, size & performance concern you  
@@ -24,24 +24,24 @@ _KENOLO is a 22KB `eval`-free npm package_.
     // mandatory - object of one or more conditions to check whether rule should apply:
     "include":
       // condition 1:
-      { "name": "CONDITION_NAME", "property": "PROPERTY_PATH_TO_EXTRACT_DATA_FROM", "operator": "eq", "value": "SECOND_OPERAND" },
+      { "name": "CONDITION_NAME", "property": "PROPERTY_PATH_TO_EXTRACT_DATA_FROM", "operator": "eq", "value": "VALUE_TO_COMPARE_WITH" },
     // optional - object of one or more conditions to check whether rule should NOT apply:
     "exclude": {
       // array of conditions which should all be truthy for rule to apply:
       "and": [
         // condition 1:
-        { "name": "CONDITION_NAME", "property": "PROPERTY_PATH_TO_EXTRACT_DATA_FROM", "operator": "gt", "value": "SECOND_OPERAND" },
+        { "name": "CONDITION_NAME", "property": "PROPERTY_PATH_TO_EXTRACT_DATA_FROM", "operator": "gt", "value": "VALUE_TO_COMPARE_WITH" },
         // condition 2:
-        { "name": "CONDITION_NAME", "property": "PROPERTY_PATH_TO_EXTRACT_DATA_FROM", "operator": "neq", "value": "SECOND_OPERAND" },
+        { "name": "CONDITION_NAME", "property": "PROPERTY_PATH_TO_EXTRACT_DATA_FROM", "operator": "neq", "value": "VALUE_TO_COMPARE_WITH" },
         // more conditions:
         //...
       ],
       // array of conditions from which at least one of them should be truthy for rule to apply:
       "or": [
         // condition 1:
-        { "name": "CONDITION_NAME", "property": "PROPERTY_PATH_TO_EXTRACT_DATA_FROM", "operator": "eq", "value": "SECOND_OPERAND" },
+        { "name": "CONDITION_NAME", "property": "PROPERTY_PATH_TO_EXTRACT_DATA_FROM", "operator": "eq", "value": "VALUE_TO_COMPARE_WITH" },
         // condition 2:
-        { "name": "CONDITION_NAME", "property": "PROPERTY_PATH_TO_EXTRACT_DATA_FROM", "operator": "eq", "value": "SECOND_OPERAND" },
+        { "name": "CONDITION_NAME", "property": "PROPERTY_PATH_TO_EXTRACT_DATA_FROM", "operator": "eq", "value": "VALUE_TO_COMPARE_WITH" },
         // more conditions:
         //...
       ]
