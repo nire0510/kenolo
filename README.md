@@ -1,15 +1,58 @@
-# KENOLO
+# KENOLO ![KENOLO](https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_thumbs_up_down_48px-24.png)
 
-## Basic Business Rules Engine
-Kenolo is a lightweight rules engine, which checks if a rule applies to a data object based on a set of human readable conditions.
+## A lightweight JSON-based business rules engine
+![Build Status](https://api.travis-ci.org/nire0510/kenolo.svg?branch=master)
+![Dependency Status](https://david-dm.org/{{username}}/{{project_name}}.svg)
 
-### Pros
-- Easy to Use - JSON-based conditions file
-- Secure & Fast - No use of eval()
-- Lightweight
+### Consider Using KENOLO, If:
+- You want non-programmers to be able to understand and modify the rules themselves.
+- You need to apply different rules and conditions per environment:  
+_Use npm configuration packages, such as [config](https://www.npmjs.com/package/config) or [nconf](https://www.npmjs.com/package/nconf), to store your rulesets per environment_.
+- You strive to keep source code modifications and consequently tedious QA cycles to the minimum:  
+_Simply modify an external JSON file to update your ruleset_.
+- Security, size & performance concern you:  
+_KENOLO is a 22KB `eval`-free npm package_.
 
 ### Installation
 `npm i kenolo -S`
+
+### Ruleset Structure
+```javascript
+{
+  "NAME_OF_RULE_1": {
+    // mandatory - object of one or more conditions to check whether rule should apply:
+    "include":
+      // condition 1:
+      { "name": "CONDITION_NAME", "property": "PROPERTY_PATH_TO_EXTRACT_DATA_FROM", "operator": "eq", "value": "SECOND_OPERAND" },
+    // optional - object of one or more conditions to check whether rule should NOT apply:
+    "exclude": {
+      // array of conditions which should all be truthy for rule to apply:
+      "and": [
+        // condition 1:
+        { "name": "CONDITION_NAME", "property": "PROPERTY_PATH_TO_EXTRACT_DATA_FROM", "operator": "gt", "value": "SECOND_OPERAND" },
+        // condition 2:
+        { "name": "CONDITION_NAME", "property": "PROPERTY_PATH_TO_EXTRACT_DATA_FROM", "operator": "neq", "value": "SECOND_OPERAND" },
+        // more conditions:
+        //...
+      ],
+      // array of conditions from which at least one of them should be truthy for rule to apply:
+      "or": [
+        // condition 1:
+        { "name": "CONDITION_NAME", "property": "PROPERTY_PATH_TO_EXTRACT_DATA_FROM", "operator": "eq", "value": "SECOND_OPERAND" },
+        // condition 2:
+        { "name": "CONDITION_NAME", "property": "PROPERTY_PATH_TO_EXTRACT_DATA_FROM", "operator": "eq", "value": "SECOND_OPERAND" },
+        // more conditions:
+        //...
+      ]
+    }
+  },
+  "NAME_OF_RULE_2": {
+    "include": [
+      // ...
+    ]
+  }
+}
+```
 
 ### Basic Example
 ```javascript
@@ -24,7 +67,7 @@ const data = {
   }
 };
 
-const rule = {
+const SHOULD_REVIEW = {
   include: {
     and: [
       { name: 'STATUS_PENDING', property: 'order.status', operator: 'eq', value: 2 },
@@ -37,22 +80,36 @@ const rule = {
   }
 };
 
-kenolo(rule, data);
-// -> { decision: true, conditions: [ 'STATUS_PENDING', 'HIGH_RISK_USER_EMAILS' ] }
+kenolo(SHOULD_REVIEW, data);
+// -> { apply: true, conditions: [ 'STATUS_PENDING', 'HIGH_RISK_USER_EMAILS' ] }
 ```
 
 See tests directory for more examples
 
 ### Supported Operators
-- `eq` - Equal to (a single value)
-- `weq` - (Weak) Equal to (a single value)
-- `neq` - Not equal to (a single value)
-- `in` - In (an array of values)
-- `nin` - Not in (an array of values)
-- `gt` - Greater than (a single value)
-- `gte` - Greater than or equal to (a single value)
-- `lt` - Lower than (a single value)
-- `lte` - Lower than or equal to (a single value)
-- `gt` - Greater than (a single value)
-- `sw` - Starts with (an array of values)
-- `ew` - Ends with (an array of values)
+- `eq` - Equal to (a single value)  
+`{ "property": "a", "operator": "eq", "value": "a" }`
+- `weq` - Weak equal to (a single value)  
+`{ "property": "2", "operator": "weq", "value": 2 }` 
+- `neq` - Not equal to (a single value)  
+`{ "property": "a", "operator": "neq", "value": "b" }`
+- `in` - In (an array of values)  
+`{ "property": "a", "operator": "in", "value": ["a", "b", "c"] }`
+- `nin` - Not in (an array of values)  
+`{ "property": "d", "operator": "nin", "value": ["a", "b", "c"] }`
+- `gt` - Greater than (a single value)  
+`{ "property": 100, "operator": "gt", "value": 80 }`
+- `gte` - Greater than or equal to (a single value)  
+`{ "property": 100, "operator": "gte", "value": 100 }`
+- `lt` - Lower than (a single value)  
+`{ "property": 100, "operator": "lt", "value": 120 }`
+- `lte` - Lower than or equal to (a single value)  
+`{ "property": 100, "operator": "lte", "value": 100 }`
+- `sw` - Starts with (an array of values)  
+`{ "property": "+1 40 9871625", "operator": "sw", "value": ["+1", "+40"] }`
+- `ew` - Ends with (an array of values)  
+`{ "property": "danger@hacker.com", "operator": "ew", "value": ["@hacker.com", "@hazard.com"] }`
+- `sl` - Sounds like (an array of values)  
+`{ "property": "John", "operator": "sl", "value": ["Jon", "David"] }`
+- `re` - Regular expression (an array of values)  
+`{ "property": "New York", "operator": "re", "value": [/New/i] }`

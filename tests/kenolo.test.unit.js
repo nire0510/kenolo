@@ -32,6 +32,11 @@ describe('check FOR_APPROVAL rule', function () {
     expect(decision.conditions).to.include('HIGH_RISK_EMAIL_DOMAINS');
   });
 
+  it('should be false if user\'s email domain is hacker.com, but order is already paid (exclude block)', function () {
+    const decision = kenolo(rules.FOR_APPROVAL, { order: { paid: true, status: 2, user: { email: 'email@hacker.com' } }});
+    expect(decision.conditions).to.include('ALREADY_PAID');
+  });
+
   it('should be true if user email is danger@hotmail.com', function () {
     const decision = kenolo(rules.FOR_APPROVAL, { order: { status: 2, user: { email: 'danger@hotmail.com' } } });
     expect(decision.conditions).to.include('HIGH_RISK_USER_EMAILS');
@@ -142,6 +147,10 @@ describe('Operators', function () {
     it('should return false if value a doesnt exists in array b', function () {
       expect(operators.in(2, [1, 3, 4])).to.be.false;
     });
+
+    it('should throw an exception if b is not an array', function () {
+      expect(operators.in(2, [4])).to.throw;
+    });
   });
 
   describe('nin', function () {
@@ -152,6 +161,10 @@ describe('Operators', function () {
     it('should return true if value a doesnt exists in array b', function () {
       expect(operators.nin(2, [1, 3, 4])).to.be.true;
     });
+
+    it('should throw an exception if b is not an array', function () {
+      expect(operators.nin(2, [4])).to.throw;
+    });
   });
 
   describe('ew', function () {
@@ -161,6 +174,10 @@ describe('Operators', function () {
 
     it('should return false if value a doesnt end with b', function () {
       expect(operators.ew('test@bla.com', ['@foo.com'])).to.be.false;
+    });
+
+    it('should throw an exception if b is not an array', function () {
+      expect(operators.ew('test@bla.com', ['@foo.com'])).to.throw;
     });
   });
 
