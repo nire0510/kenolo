@@ -1,6 +1,6 @@
 {
   "name": "kenolo",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Basic business rules engine",
   "main": "index.js",
   "scripts": {

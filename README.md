@@ -1,7 +1,6 @@
 # KENOLO ![KENOLO](https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_thumbs_up_down_48px-24.png)
 
 ## A lightweight JSON-based business rules engine
-![Build Status](https://api.travis-ci.org/nire0510/kenolo.svg?branch=master)
 ![Dependency Status](https://david-dm.org/{{username}}/{{project_name}}.svg)
 
 ### Consider Using KENOLO, If:
