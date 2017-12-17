@@ -1,7 +1,7 @@
 # KENOLO ![KENOLO](https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_thumbs_up_down_48px-24.png)
 
 ## A lightweight JSON-based business rules engine
-![Dependency Status](https://david-dm.org/{{username}}/{{project_name}}.svg)
+[![npm version](https://badge.fury.io/js/kenolo.svg)](https://badge.fury.io/js/kenolo)
 
 ### Consider Using KENOLO, If:
 - You want non-programmers to be able to understand and modify the rules themselves  
