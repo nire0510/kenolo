@@ -8,7 +8,7 @@
 _KENOLO ruleset is simple yet powerful thanks to the operators which are supported_
 - You need to apply different rules and conditions per environment  
 _Use npm configuration packages, such as [config](https://www.npmjs.com/package/config) or [nconf](https://www.npmjs.com/package/nconf), to store your ruleset per environment_.
-- You strive to keep source code modifications and consequently tedious QA cycles to the minimum  
+- Rules are frequently changed, but you strive to keep source code modifications and consequently tedious QA cycles to the minimum  
 _Simply modify an external JSON file to update your ruleset_.
 - Security, size & performance concern you  
 _KENOLO is a 22KB `eval`-free npm package_.
@@ -86,6 +86,16 @@ kenolo(SHOULD_REVIEW, data);
 ```
 
 See tests directory for more examples
+
+### Response Object
+```javascript
+{
+  // {Boolean} apply - Should rule apply?
+  apply: true,
+  // {String[]} conditions - Truthy condition names
+  conditions: ['CONDITION_NAME_1', 'CONDITION_NAME_2']
+}
+```
 
 ### Supported Operators
 - **`eq`** - Equal to (a single value)  

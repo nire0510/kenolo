@@ -1,7 +1,7 @@
 {
   "name": "kenolo",
   "version": "1.0.5",
-  "description": "Basic business rules engine",
+  "description": "A lightweight JSON-based business rules engine",
   "main": "index.js",
   "scripts": {
     "test": "mocha ./tests"
