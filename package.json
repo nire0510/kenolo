@@ -1,6 +1,6 @@
 {
   "name": "kenolo",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "A lightweight JSON-based business rules engine",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,7 @@
     "mocha": "^4.0.1"
   },
   "dependencies": {
-    "getv": "^1.0.0",
+    "getv": "^1.0.2",
     "talisman": "^0.20.0"
   }
 }
