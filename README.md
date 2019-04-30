@@ -134,5 +134,9 @@ See tests directory for more examples
 - **`sl`** - Sounds like (an array of values)  
 `{ "property": "John", "operator": "sl", "value": ["Jon", "David"] }`  
 
+- **`inc`** - Includes (an array of values)  
+`{ "property": "John", "operator": "inc", "value": ["oh", "bla"] }`  
+
 - **`re`** - Regular expression (an array of values)  
 `{ "property": "New York", "operator": "re", "value": [/New/i] }`  
+`{ "property": "New York", "operator": "re", "value": ["\\w+"] }`  
