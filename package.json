@@ -1,6 +1,6 @@
 {
   "name": "kenolo",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "A lightweight JSON-based business rules engine",
   "main": "index.js",
   "scripts": {
@@ -9,14 +9,14 @@
   "author": "Nir Elbaz <nire0510@gmail.com> (http://nirelbaz.com)",
   "license": "ISC",
   "devDependencies": {
-    "chai": "^4.1.2",
-    "eslint": "^4.13.1",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.8.0",
-    "mocha": "^4.0.1"
+    "chai": "^4.2.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.2",
+    "mocha": "^6.1.4"
   },
   "dependencies": {
     "getv": "^1.0.3",
-    "talisman": "^0.20.0"
+    "talisman": "^0.21.0"
   }
 }

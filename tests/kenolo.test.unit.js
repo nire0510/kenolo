@@ -201,9 +201,23 @@ describe('Operators', function () {
     });
   });
 
+  describe('inc', function () {
+    it('should return true if value a is a substring of b', function () {
+      expect(operators.inc('john', ['oh'])).to.be.true;
+    });
+
+    it('should return false if value a is not a substring of b', function () {
+      expect(operators.inc('john', ['bla'])).to.be.false;
+    });
+  });
+
   describe('re', function () {
     it('should return true if value a matches b regex', function () {
       expect(operators.re('john', [/o+/])).to.be.true;
+    });
+
+    it('should return true if value a matches b regex (string version)', function () {
+      expect(operators.re('john', ['o+'])).to.be.true;
     });
 
     it('should return false if value a doesnt match b regex', function () {
