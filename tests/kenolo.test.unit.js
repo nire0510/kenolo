@@ -77,6 +77,16 @@ describe('Operators', function () {
     });
   });
 
+  describe('nweq', function () {
+    it('should return false if both params are equal', function () {
+      expect(operators.nweq(2, 2)).to.be.false;
+    });
+
+    it('should return false if both params are not equal in value but not in type', function () {
+      expect(operators.nweq(2, '2')).to.be.false;
+    });
+  });
+
   describe('neq', function () {
     it('should return false if both params are equal', function () {
       expect(operators.neq(2, 2)).to.be.false;
@@ -181,6 +191,20 @@ describe('Operators', function () {
     });
   });
 
+  describe('new', function () {
+    it('should return false if value a ends with b', function () {
+      expect(operators.new('test@bla.com', ['@bla.com'])).to.be.false;
+    });
+
+    it('should return true if value a doesnt end with b', function () {
+      expect(operators.new('test@bla.com', ['@foo.com'])).to.be.true;
+    });
+
+    it('should throw an exception if b is not an array', function () {
+      expect(operators.new('test@bla.com', ['@foo.com'])).to.throw;
+    });
+  });
+
   describe('sw', function () {
     it('should return true if value a starts with b', function () {
       expect(operators.sw('test@bla.com', ['test', 'bar'])).to.be.true;
@@ -188,6 +212,16 @@ describe('Operators', function () {
 
     it('should return false if value a doesnt start with b', function () {
       expect(operators.sw('test@bla.com', ['@foo.com'])).to.be.false;
+    });
+  });
+
+  describe('nsw', function () {
+    it('should return false if value a starts with b', function () {
+      expect(operators.nsw('test@bla.com', ['test', 'bar'])).to.be.false;
+    });
+
+    it('should return true if value a doesnt start with b', function () {
+      expect(operators.nsw('test@bla.com', ['@foo.com'])).to.be.true;
     });
   });
 

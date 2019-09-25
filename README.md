@@ -98,14 +98,17 @@ See tests directory for more examples
 ```
 
 ### Supported Operators
-- **`eq`** - Equal to (a single value)  
+- **`eq`** - Equals to (a single value)  
 `{ "property": "a", "operator": "eq", "value": "a" }`  
 
-- **`weq`** - Weak equal to (a single value)  
+- **`neq`** - Not equals to (a single value)  
+`{ "property": "a", "operator": "neq", "value": "b" }`  
+
+- **`weq`** - Weak equals to (a single value)  
 `{ "property": "2", "operator": "weq", "value": 2 }`  
 
-- **`neq`** - Not equal to (a single value)  
-`{ "property": "a", "operator": "neq", "value": "b" }`  
+- **`nweq`** - Not weak equals to (a single value)  
+`{ "property": "a", "operator": "nweq", "value": "b" }`  
 
 - **`in`** - In (an array of values)  
 `{ "property": "a", "operator": "in", "value": ["a", "b", "c"] }`  
@@ -116,26 +119,35 @@ See tests directory for more examples
 - **`gt`** - Greater than (a single value)  
 `{ "property": 100, "operator": "gt", "value": 80 }`  
 
-- **`gte`** - Greater than or equal to (a single value)  
+- **`gte`** - Greater than or equals to (a single value)  
 `{ "property": 100, "operator": "gte", "value": 100 }`  
 
 - **`lt`** - Lower than (a single value)  
 `{ "property": 100, "operator": "lt", "value": 120 }`  
 
-- **`lte`** - Lower than or equal to (a single value)  
+- **`lte`** - Lower than or equals to (a single value)  
 `{ "property": 100, "operator": "lte", "value": 100 }`  
 
 - **`sw`** - Starts with (an array of values)  
 `{ "property": "+1 40 9871625", "operator": "sw", "value": ["+1", "+40"] }`  
 
+- **`nsw`** - Not starts with (an array of values)  
+`{ "property": "+1 40 9871625", "operator": "nsw", "value": ["+1", "+40"] }`  
+
 - **`ew`** - Ends with (an array of values)  
 `{ "property": "danger@hacker.com", "operator": "ew", "value": ["@hacker.com", "@hazard.com"] }`  
 
-- **`sl`** - Sounds like (an array of values)  
-`{ "property": "John", "operator": "sl", "value": ["Jon", "David"] }`  
+- **`new`** - Not ends with (an array of values)  
+`{ "property": "danger@hacker.com", "operator": "new", "value": ["@hacker.com", "@hazard.com"] }`  
 
 - **`inc`** - Includes (an array of values)  
 `{ "property": "John", "operator": "inc", "value": ["oh", "bla"] }`  
+
+- **`ninc`** - Not includes (an array of values)  
+`{ "property": "John", "operator": "ninc", "value": ["oh", "bla"] }`  
+
+- **`sl`** - Sounds like (an array of values)  
+`{ "property": "John", "operator": "sl", "value": ["Jon", "David"] }`  
 
 - **`re`** - Regular expression (an array of values)  
 `{ "property": "New York", "operator": "re", "value": [/New/i] }`  
