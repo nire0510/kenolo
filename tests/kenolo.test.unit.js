@@ -258,4 +258,39 @@ describe('Operators', function () {
       expect(operators.re('bar', [/o+/])).to.be.false;
     });
   });
+
+  describe('some', function () {
+    // it('should throw an exception if a or b are not arrays', function () {
+    //   expect(operators.some('foo', ['@foo.com'])).to.throw;
+    //   expect(operators.some(['foo'], 'foo')).to.throw;
+    // });
+
+    it('should return true if some of the values in a array exist in b array', function () {
+      expect(operators.some([1, 2, 3], [3, 4, 5])).to.be.true;
+    });
+
+    it('should return false if none of the values in a array exist in b array', function () {
+      expect(operators.some([1, 2, 3], [4, 5, 6])).to.be.false;
+    });
+  });
+
+  describe('every', function () {
+    it('should return true if all of the values in a array exist in b array', function () {
+      expect(operators.every([1, 2, 3], [1, 2, 3, 4, 5])).to.be.true;
+    });
+
+    it('should return false if some of the values in a array dont exist in b array', function () {
+      expect(operators.every([1, 2, 3], [2, 3, 4])).to.be.false;
+    });
+  });
+
+  describe('none', function () {
+    it('should return true if all of the values in a array dont exist in b array', function () {
+      expect(operators.none([1, 2, 3], [4, 5])).to.be.true;
+    });
+
+    it('should return false if some of the values in a array exist in b array', function () {
+      expect(operators.every([1, 2, 3], [3, 4, 5])).to.be.false;
+    });
+  });
 });

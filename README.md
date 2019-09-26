@@ -152,3 +152,11 @@ See tests directory for more examples
 - **`re`** - Regular expression (an array of values)  
 `{ "property": "New York", "operator": "re", "value": [/New/i] }`  
 `{ "property": "New York", "operator": "re", "value": ["\\w+"] }`  
+
+#### Array properties
+- **`some`** - Some are included (an array of values)  
+`{ "property": [1, 2, 3], "operator": "some", "value": [1, 5, 8] }`  
+- **`every`** - All are included (an array of values)  
+`{ "property": [1, 2, 3], "operator": "all", "value": [1, 2, 3, 4, 5] }`  
+- **`none`** - None are included (an array of values)  
+`{ "property": [1, 2, 3], "operator": "none", "value": [4, 5, 7, 8] }`  
