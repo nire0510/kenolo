@@ -38,5 +38,35 @@
         }
       ]
     }
+  },
+  "APPROVE_AUTOMATICALLY": {
+    "exclude": {
+      "or": [
+        {
+          "name": "MAX_TOTAL_PRICE",
+          "property": "trip.dealPrice",
+          "operator": "gte",
+          "value": 2500
+        },
+        {
+          "name": "ALLOWED_GROUPS",
+          "property": "trip.groupId",
+          "operator": "in",
+          "value": [
+            "8a804be5-781e-425d-8e66-00f1f5e024f7"
+          ]
+        }
+      ]
+    },
+    "include": {
+      "and": [
+        {
+          "name": "AUTO_APPROVAL",
+          "property": "trip.manual_approval",
+          "operator": "neq",
+          "value": true
+        }
+      ]
+    }
   }
 }
