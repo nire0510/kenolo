@@ -49,6 +49,26 @@ describe('check FOR_APPROVAL rule', function () {
 });
 
 describe('Operators', function () {
+  describe('ex', function () {
+    it('should return true if a property exists', function () {
+      expect(operators.ex()).to.be.false;
+      expect(operators.ex(undefined)).to.be.false;
+      expect(operators.ex([1, 2, 3])).to.be.true;
+      expect(operators.ex(1)).to.be.true;
+      expect(operators.ex('test')).to.be.true;
+    });
+  });
+
+  describe('nex', function () {
+    it('should return true if a property doesn\'t exist', function () {
+      expect(operators.nex()).to.be.true;
+      expect(operators.nex(undefined)).to.be.true;
+      expect(operators.nex([1, 2, 3])).to.be.false;
+      expect(operators.nex(1)).to.be.false;
+      expect(operators.nex('test')).to.be.false;
+    });
+  });
+
   describe('eq', function () {
     it('should return true if both params are equal', function () {
       expect(operators.eq(2, 2)).to.be.true;

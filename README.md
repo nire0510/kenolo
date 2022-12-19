@@ -98,6 +98,12 @@ See tests directory for more examples
 ```
 
 ### Supported Operators
+- **`ex`** - Property exists  
+`{ "property": "a", "operator": "ex" }`  
+
+- **`nex`** - Property doesn't exists  
+`{ "property": "a", "operator": "nex" }`  
+
 - **`eq`** - Equals to (a single value)  
 `{ "property": "a", "operator": "eq", "value": "a" }`  
 
