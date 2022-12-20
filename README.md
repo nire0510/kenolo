@@ -163,6 +163,6 @@ See tests directory for more examples
 - **`some`** - Some are included (an array of values)  
 `{ "property": [1, 2, 3], "operator": "some", "value": [1, 5, 8] }`  
 - **`every`** - All are included (an array of values)  
-`{ "property": [1, 2, 3], "operator": "all", "value": [1, 2, 3, 4, 5] }`  
+`{ "property": [1, 2, 3], "operator": "every", "value": [1, 2, 3, 4, 5] }`  
 - **`none`** - None are included (an array of values)  
 `{ "property": [1, 2, 3], "operator": "none", "value": [4, 5, 7, 8] }`  
